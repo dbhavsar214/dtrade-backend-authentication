@@ -1,8 +1,6 @@
 import { Request, Response} from "express";
 import type { UserRegistration } from "../types";
 import { registerUser } from "../services/Signup.Service";
-import pool from "../config/DB";
-import { success } from "zod";
 
 export const signup = async(req : Request, res : Response) => {
 

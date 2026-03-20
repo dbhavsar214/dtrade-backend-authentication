@@ -2,7 +2,7 @@
 # Node modules
 # =========================
 node_modules/
-
+package-lock.json
 # =========================
 # Build output
 # =========================
@@ -64,6 +64,7 @@ coverage/
 # =========================
 docker-compose.override.yml
 
+
 # =========================
 # Database (if local files used)
 # =========================
@@ -74,3 +75,4 @@ docker-compose.override.yml
 # Mac/Linux hidden files
 # =========================
 .*.swp
+
