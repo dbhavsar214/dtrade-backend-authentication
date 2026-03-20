@@ -1,6 +1,6 @@
 import express from "express";
 import type { Express } from "express";
-import router from "./routes/auth.routes";
+import router from "./routes";
 import pool,  {verifyConnection} from "./config/DB";
 
 

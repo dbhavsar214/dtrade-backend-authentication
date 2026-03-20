@@ -6,3 +6,15 @@ export interface UserRegistration  {
     confirmPassword : string,
     registrationTime : string,
 }
+
+export interface UserLogin {
+    emaild : string,
+    password : string,
+    loginTime : string
+}
+
+export interface AuthenticatedUser {
+     id : number,
+     email : string,
+     password : string
+}

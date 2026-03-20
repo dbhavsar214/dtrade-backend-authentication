@@ -1,5 +1,5 @@
 import bcrypt from "bcrypt";
-import zodError, { success } from "zod";
+import zodError from "zod";
 
 import { createUser, findbyUserEmail } from "../repository/Signup.Repository";
 import { UserRegistration } from "../types";
@@ -21,11 +21,10 @@ export const registerUser = async (data: UserRegistration) => {
       password: hashedPassword,
     });
 
-    return { 
-        success: true, 
-        data: "USER_REGISTERED_SUCCESSFULLY" 
+    return {
+      success: true,
+      data: "USER_REGISTERED_SUCCESSFULLY",
     };
-
   } catch (error) {
     if (error instanceof zodError.ZodError) {
       return {
@@ -43,20 +42,20 @@ export const registerUser = async (data: UserRegistration) => {
       };
     }
 
-    if(error instanceof Error && error.message === "DB_ERROR"){
-        return {
-            success : false,
-            type : "INTERNAL_ERROR",
-            message : "ERROR_REGISTERING_USER_IN_DATABASE"
-        }
+    if (error instanceof Error && error.message === "DB_ERROR") {
+      return {
+        success: false,
+        type: "INTERNAL_ERROR",
+        message: "ERROR_REGISTERING_USER_IN_DATABASE",
+      };
     }
 
     console.error("ERROR_IN_SIGNUP_SERVICE :", error);
 
     return {
-        success : false,
-        type : "INTERNAL_SERVER_ERROR",
-        message : "SOMETHING_WENT_WRONG"
+      success: false,
+      type: "INTERNAL_SERVER_ERROR",
+      message: "SOMETHING_WENT_WRONG",
     };
   }
 };
