@@ -11,6 +11,12 @@ export const login = async(req : Request, res : Response) =>{
         const response = await loginUser(userLoginData);
 
         if(response.success){
+
+            res.cookie("token", response.token , {
+                httpOnly : true,
+                secure : false,
+                sameSite : "lax" ,
+            });
             return res.status(200).json(response);
         }
 

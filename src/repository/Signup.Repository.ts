@@ -19,8 +19,12 @@ export const findbyUserEmail = async (userEmail: string) => {
 export const createUser = async (data: UserRegistration) => {
   try {
     
-    const query =
-      "INSERT INTO Users (first_name, last_name, email, password, registration_time)";
+    const query = `
+      INSERT INTO Users 
+      (first_name, last_name, email, password, registration_time)
+      VALUES ($1, $2, $3, $4, $5)
+      RETURNING *;
+    `;
    
     const values = [
       data.firstName,
@@ -29,16 +33,16 @@ export const createUser = async (data: UserRegistration) => {
       data.password,
       data.registrationTime,
     ];
-
+    
     const result = await pool.query(query, values);
 
     return result.rows[0];
 
   } catch (error: any) {
     if (error.code === "23505") {
-      throw new Error("DB_DUPLICATE_EMAIL");
+      throw new Error("DB_DUPLICATE_EMAIL", error);
     }
-
-    throw new Error("ERROR_INSERTING_USER_IN_DATABASE");
+    console.error("ERROR INSERTING USER IN DATABASE", error)
+    throw new Error("ERROR_INSERTING_USER_IN_DATABASE", error);
   }
 };

@@ -7,6 +7,7 @@ export const signup = async(req : Request, res : Response) => {
     const UserRegistrationdata : UserRegistration = req.body;
 
     try{
+        
         const response = await registerUser(UserRegistrationdata);
         
         if(response.success){
