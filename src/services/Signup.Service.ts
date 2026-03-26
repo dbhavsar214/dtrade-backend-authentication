@@ -43,14 +43,13 @@ export const registerUser = async (data: UserRegistration) => {
     }
 
     if (error instanceof Error && error.message === "DB_ERROR") {
+      console.error("ERROR_IN_DATABASE", error)
       return {
         success: false,
         type: "INTERNAL_ERROR",
         message: "ERROR_REGISTERING_USER_IN_DATABASE",
       };
     }
-
-    console.error("ERROR_IN_SIGNUP_SERVICE :", error);
 
     return {
       success: false,

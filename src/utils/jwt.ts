@@ -16,3 +16,17 @@ export const generateToken = (userLoginInfo: AuthenticatedUser) => {
     },
   );
 };
+
+export const verifyMe = (userToken: string) => {
+  try {
+    if (!userToken) return null;
+
+    const decoded = jwt.verify(
+      userToken,
+      process.env.JWT_SECERET_KEY as string,
+    );
+    return decoded;
+  } catch {
+    console.error("ERROR_VERIFYING_TOKEN");
+  }
+};

@@ -26,7 +26,7 @@ export const loginUser = async(data : UserLogin) => {
 
         return{
             success : true,
-            data : { token },
+            token ,
             message : "USER_AUTHENTICATED_SUCCESSFULLY"
         }
 
