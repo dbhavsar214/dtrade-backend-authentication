@@ -2,7 +2,7 @@ name: build dtrade-user-authentication-backend and deply on DockerHub
 
 on:
   push:
-    branched:
+    branches:
       - main
 
 jobs:
@@ -10,30 +10,30 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    -name: Checkout Code
+    - name: Checkout Code
     uses: actions/checkout@v4
 
-    -name: Setup Node.js
+    - name: Setup Node.js
     uses: actions/setup-node@v3
     with:
       node-version: 18
     
-    -name: installing dependencies
+    - name: installing dependencies
     run: npm ci
 
-    -name: Running tests
+    - name: Running tests
     run: npm test
 
-    -name: setting up Docker build
+    - name: setting up Docker build
     uses: docker/setup-buildx-action@v3
 
-    -name: logging in DockerHub
+    - name: logging in DockerHub
     uses: docker/login-action@v3
     with:
       username: ${{secerets.DOCKER_USERNAME}}
       password: ${{secerets.DOCKER_ACCESS_TOKEN}}
     
-    -name: Building and pushing docker image
+    - name: Building and pushing docker image
     uses: docker/build-push-action@v5
     with:
     context: .
