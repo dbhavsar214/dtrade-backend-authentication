@@ -7,7 +7,7 @@ export const findbyUserEmail = async (userEmail: string) => {
     const result = await pool.query(
       "SELECT 1 FROM Users WHERE email = $1 LIMIT 1",
       [userEmail],
-    );
+    ); 
 
     return result.rowCount === 1;
 
@@ -46,3 +46,4 @@ export const createUser = async (data: UserRegistration) => {
     throw new Error("ERROR_INSERTING_USER_IN_DATABASE", error);
   }
 };
+   
